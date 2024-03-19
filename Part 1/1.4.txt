@@ -1,0 +1,7 @@
+Ran "Ubuntu" using "docker run -it ubuntu"
+
+Then downloaded the dependencies shown above the exercise. 
+
+Then ran "apt-get install -y curl"
+
+Then ran the given script and it worked with the input helsnki.fi
