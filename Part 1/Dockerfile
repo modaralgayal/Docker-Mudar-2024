@@ -1,5 +1,16 @@
 # Use the Alpine Linux base image
-FROM devopsdockeruh/simple-web-service:alpine
+FROM ubuntu:22.04
 
-# Set the CMD to automatically run the server
-CMD server
+# Use /usr/src/app as our workdir. The following instructions will be executed in this location.
+WORKDIR /usr/src/app
+
+# Copy the script.sh file from this location to /usr/src/app/ creating /usr/src/app/script.sh.
+COPY script.sh .
+
+# Install curl 
+RUN apt update && \
+    apt install -y curl && \
+    chmod +x script.sh
+
+# When running Docker run the command will be ./script.sh
+ENTRYPOINT [ "./script.sh" ]
