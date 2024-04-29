@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    container_name: redisdb
+
+
+  backend:
+    image: example-backend
+    environment:
+      - REQUEST_ORIGIN=http://localhost:5000
+      - REDIS_HOST=redisdb
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+
+  frontend:
+    image: example-frontend
+    ports:
+      - 5000:5000
+  
+  postgres:
+    image: postgres:13.2-alpine
+    environment:
+      - POSTGRES_PASSWORD=secret
+    restart: unless-stopped
+    volumes:
+      - database:/var/lib/postgres/data
+
+
+volumes:
+  database:
