@@ -1,0 +1,3 @@
+docker run -d   -it   --name devtest   --mount type=bind,source="$(pwd)"/database,target=/app   postgres:latest
+
+docker inspect devtest
