@@ -1,0 +1,1 @@
+the dockerfile is available [here](https://github.com/modaralgayal/WebShop-Repo/blob/newUi/Dockerfile)
